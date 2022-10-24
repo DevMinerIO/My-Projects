@@ -21,6 +21,28 @@ public class Exercises {
       }
       System.out.println("is the remainder equal to zero?: " + equalsZero);
 
+      // Sum of numbers between 1-1000, divisible by both 3 and 5. Print the numbers,
+      // and break the loop when 5 numbers have been found
+      int counter = 0;
+      int sum = 0;
+      for (int i = 1; i <= 1000; i++) {
+         if ((i % 3 == 0) & (i % 5 == 0)) {
+            System.out.println("found number" + i);
+            sum += i;
+            counter++;
+         }
+         if (counter == 5) {
+            break;
+         }
+      }
+      System.out.println("sum is: " + sum);
+      System.out.println("sum digits method for 125 is: " + sumDigits(125));
+      // string concatination
+      // System.out.println(numberToWords(123));
+
+      numberToWords(611230);
+      numberToWords(1010);
+      getDigitCount(1010);
    }
 
    // create 2 methods for kilo/miles conversion
@@ -94,4 +116,97 @@ public class Exercises {
          System.out.println("Saturday");
       }
    }
+
+   // if a number is greater than 10, return the sum of each digit. EX 125 = 1+2+5
+   public static int sumDigits(int number) {
+      // invalid value
+      if (number < 10) {
+         System.out.println("invalid value");
+         return -1;
+      }
+      int sum = 0;
+      while (number > 0) {
+         System.out.println("remaining digits are:" + number);
+         // extract the last digit.
+         int toAdd = number % 10;
+         sum += toAdd;
+         // drop the last digit
+         number /= 10;
+      }
+      return sum;
+
+   }
+
+   // numbers to words Section 5 Exercise 23
+   // Take in a number, write out each number as a word.
+   public static void numberToWords(int number) {
+      if (number < 0) {
+         System.out.println("Invalid Value");
+      }
+      String wordToReturn = "";
+      int reverseNumber = reverse(number);
+      System.out.println("reverse of " + number + " returns: " + reverseNumber);
+      int digitLength = getDigitCount(number);
+      System.out.println("digit length is:" + digitLength);
+      for (int i = 0; i < digitLength; i++) {
+         switch (reverseNumber % 10) {
+            case 0:
+               wordToReturn += "zero ";
+               break;
+            case 1:
+               wordToReturn += "one ";
+               break;
+            case 2:
+               wordToReturn += "two ";
+               break;
+            case 3:
+               wordToReturn += "three ";
+               break;
+            case 4:
+               wordToReturn += "four ";
+               break;
+            case 5:
+               wordToReturn += "five ";
+               break;
+            case 6:
+               wordToReturn += "six ";
+               break;
+            case 7:
+               wordToReturn += "seven ";
+               break;
+            case 8:
+               wordToReturn += "eight ";
+               break;
+            case 9:
+               wordToReturn += "nine ";
+               break;
+            default:
+               wordToReturn += "Zero";
+
+         }
+         reverseNumber /= 10;
+      }
+      System.out.println(wordToReturn);
+   }
+
+   public static int reverse(int number) {
+      int reversed = 0;
+      while (number != 0) {
+         // add last digit to the reversed number
+         reversed = (reversed * 10) + number % 10;
+         // remove the last digit
+         number /= 10;
+      }
+      return reversed;
+   }
+
+   public static int getDigitCount(int number) {
+      if (number < 0) {
+         return -1;
+      }
+      int toReturn = String.valueOf(number).length();
+      System.out.println("getDigitCount is:" + toReturn);
+      return toReturn;
+   }
+
 }
