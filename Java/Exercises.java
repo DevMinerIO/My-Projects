@@ -209,4 +209,19 @@ public class Exercises {
       return toReturn;
    }
 
+   // Write a method that finds the first and last digit of the parameter number.
+   // Use a loop, and return the sum of those 2 numbers
+   public static int sumFirstAndLastDigit(int number) {
+      if (number < 0) {
+         return -1;
+      }
+      int lastNumber = number % 10;
+      int firstNumber = 0;
+      while (number != 0) {
+         firstNumber = number % 10;
+         number = number / 10;
+      }
+      return firstNumber + lastNumber;
+   }
+
 }
