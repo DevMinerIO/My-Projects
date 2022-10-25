@@ -290,4 +290,35 @@ public class Exercises {
       return days;
    }
 
+   // make a method which can keep track of the sum of even numbers
+   public static int getEvenDigitSum(int number) {
+      if (number < 0) {
+         return -1;
+      }
+      int sum = 0;
+      int currentNumber = 0;
+      while (number != 0) {
+         currentNumber = number % 10;
+         number = number / 10;
+         if (currentNumber % 2 == 0) {
+            sum += currentNumber;
+         }
+      }
+      return sum;
+   }
+
+   // create a boolean method to check if there are shared numbers. (between 10-99)
+   public static boolean hasSharedDigit(int a, int b) {
+      if (a < 10 || a > 99 || b < 10 || b > 99) {
+         return false;
+      }
+      if (a % 10 == b % 10 || a / 10 == b / 10) {
+         return true;
+      }
+      if (a % 10 == b / 10 || a / 10 == b % 10) {
+         return true;
+      }
+      return false;
+   }
+
 }
